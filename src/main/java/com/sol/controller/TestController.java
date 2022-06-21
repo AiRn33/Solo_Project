@@ -9,19 +9,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class TestController {
 
-	@PostMapping("/test/one")
-	public void test(@RequestParam String name, @RequestParam String email, @RequestParam String phone) {
+	@GetMapping("/test/test")
+	public void test() {
 		
-		System.out.println("test Code Post");
-		System.out.println("name : " + name);
-		System.out.println("email : " + email);
-		System.out.println("phone : " + phone);
+		System.out.println("test Code get");
 		
 	}
 	
-	@GetMapping("/test/one")
-	public void test1() {
-		System.out.println("test Code Get ");
-		
+	@GetMapping("/tiles/tiles-layout")
+	public void layout() {
+		System.out.println("test layout");
+	}
+	
+	@GetMapping("/home/home")
+	public void home() {
+		System.out.println("home");
 	}
 }

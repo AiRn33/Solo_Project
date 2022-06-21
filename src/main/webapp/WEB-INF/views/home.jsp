@@ -7,7 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		
         <title>Main Page</title>
         <link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -21,7 +22,7 @@
         <link href="resources/css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
-    
+      	    
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
@@ -122,7 +123,7 @@
             </div>
         </section>
         
-         <!-- App features section-->
+        <!-- App features section-->
         <section id="features">
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
@@ -157,36 +158,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- 2번째 칸 아이폰 사진 -->
-                   <!--  <div class="col-lg-4 order-lg-0">
-                        Features section device mockup
-                        <div class="features-device-mockup">
-                            <svg class="circle" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="circleGradient" gradientTransform="rotate(45)">
-                                        <stop class="gradient-start-color" offset="0%"></stop>
-                                        <stop class="gradient-end-color" offset="100%"></stop>
-                                    </linearGradient>
-                                </defs>
-                                <circle cx="50" cy="50" r="50"></circle></svg>
-                                <svg class="shape-1 d-none d-sm-block" viewBox="0 0 240.83 240.83" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(120.42 -49.88) rotate(45)"></rect>
-                                <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(-49.88 120.42) rotate(-45)"></rect></svg
-                            ><svg class="shape-2 d-none d-sm-block" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"></circle></svg>
-                            <div class="device-wrapper">
-                                <div class="device" data-device="iPhoneX" data-orientation="portrait" data-color="black">
-                                    <div class="screen bg-black">
-                                        PUT CONTENTS HERE:
-                                        * * This can be a video, image, or just about anything else.
-                                        * * Set the max width of your media to 100% and the height to
-                                        * * 100% like the demo example below.
-                                        <video muted="muted" autoplay="" loop="" style="max-width: 100%; height: 100%"><source src="resources/assets/img/demo-screen.mp4" type="video/mp4" /></video>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </section>
