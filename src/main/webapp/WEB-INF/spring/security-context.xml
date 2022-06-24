@@ -10,6 +10,8 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 
     	<security:http>
     		 	    		
+			<!-- url 마다 필요한 권한 설정 -->
+			    	
 			<security:form-login/>
 
 		</security:http>

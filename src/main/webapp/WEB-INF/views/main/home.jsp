@@ -164,24 +164,30 @@
                             <!-- Name input-->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="name" name="name" type="text"/>
-                                <label for="name">이름</label>
+                                <label for="name">이름 / 닉네임</label>
                             </div>
                             <!-- Email address input-->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="email" name="email" type="email"/>
                                 <label for="email">이메일</label>
                             </div>
+                            <div class="form-floating mb-3">
+                            	<button type="button" class="btn btn-success" id="emailCheck" onclick="email_check()">중복 체크</button>
+                            	<button type="button" class="btn btn-primary" id="emailCheckBarTrue">이메일이 사용가능합니다</button>
+                            	<button type="button" class="btn btn-danger" id="emailCheckBarFalse">이메일이 중복되었습니다</button>
+                            	<button type="button" class="btn btn-danger" id="emailReset" onclick="email_reset()">초기화</button>
+                            </div>  
                             <!-- Phone number input-->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="password" name="password" type="password"/>
-                                <label for="phone">비밀번호</label>
+                                <label for="phone">비밀번호 / [8~15]자리의 영문과 숫자만 사용 가능</label>
                             </div>       
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="passwordCheck" type="password"/>
                                 <label for="passwordCheck">비밀번호 확인</label>
                             </div>  
                             <div class="form-floating mb-3" id="passwordCheckBar">
-                            	<button type="button" class="btn btn-light">비밀번호를 입력해주세요</button>
+                            	<button type="button" class="btn btn-secondary">비밀번호를 입력해주세요</button>
                             </div>      
                             <div class="form-floating mb-3" id="passwordCheckBarTrue">
                             	<button type="button" class="btn btn-primary">비밀번호가 일치합니다</button>
@@ -198,6 +204,7 @@
                            	 	<input class="btn btn-primary rounded-pill btn-lg" type="submit" value="회원 가입">
                             </div>
                             
+                            <input type="hidden" name="emailCheckVal" id=emailCheckVal value="0">
                             <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
                         </form>
                     </div>
@@ -243,64 +250,7 @@
                 </div>
             </div>
         </div>
-       
-        
-        <!-- 빈칸 체크 및 회원가입 동의 여부 확인 -->
-	    <script>
-	    
-			$('#passwordCheck').focusout(function(){
-				
-				var pwd1 = $('#password').val();
-				var pwd2 = $('#passwordCheck').val();
-				var pwdCT = $
-				if(pwd1 == pwd2){
-					$('#passwordCheckBar').hide();
-					$('#passwordCheckBarTrue').show();
-					$('#passwordCheckBarFalse').hide();
-				}else{		
-					$('#passwordCheckBar').hide();
-					$('#passwordCheckBarFalse').show();
-					$('#passwordCheckBarTrue').hide();
-				}
-			})
-			
-			function formCheck(){
-				
-				var name = $('#name').val().trim();
-				var email = $('#email').val().trim();
-				var password = $('#password').val().trim();
-				var passwordCheck = $('#passwordCheck').val().trim();
-				var phone = $('#phone').val().trim();
-				
-				if(name == ''){
-					alert('이름을 입력해 주세요');
-					$('#name').focus();
-					return false;
-				}else if(email == ''){
-					alert('이메일을 입력해주세요');
-					$('#email').focus();
-					return false;
-				}else if(password == ''){
-					alert('비밀번호를 입력해주세요');
-					$('#password').focus();
-					return false;
-				}else if(passwordCheck == ''){
-					alert('비밀번호 확인 칸을 입력해주세요');
-					$('#passwordCheck').focus();
-					return false;
-				}else if(phone == ''){
-					alert('휴대폰 번호를 입력해 주세요');
-					$('#phone').focus();
-					return false;
-				}else if(password != passwordCheck){
-					alert('비밀번호가 일치 하지 않습니다');
-					$('#password').focus();
-					return false;
-				}
-			}
-		
-		</script>
-        
+ 	
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
@@ -311,6 +261,6 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         
-        
+       
     </body>
 </html>
