@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+
+#passwordCheckBarTrue{
+	display: none;
+}
+#passwordCheckBarFalse{
+	display: none;
+}
+
+#passwordCheckBar{
+	display: block;
+}
+#emailCheckBarTrue{
+	display: none;
+}
+
+#emailCheckBarFalse{
+	display: none;
+}
+#emailReset{
+	display: none;	
+}

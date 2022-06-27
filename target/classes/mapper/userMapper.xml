@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.sol.mapper.MemberMapper">
+ 	
+ 	<!-- 회원가입 -->
+ 	<insert id="joinMember">
+ 		insert into member values((select * from (select max(userNumber)+1 from member) next),
+ 			 						#{name}, #{email}, #{password},'1', #{phone})
+ 	</insert>
+ 	
+ 	<!-- 아이디 중복체크 -->
+ 	<select id="idCheck" resultType="int">
+ 		select count(*) from member where email=#{email}
+ 	</select>
+ 	
+ 	
+ 	<!-- 로그인 Spring Security 설정 -->
+ 	<resultMap id="memberMap" type="com.sol.domain.MemberVO" >
+		<id property="userNumber" column="userNumber"/>
+		<result property="userNumber" column="userNumber"/>
+		<result property="email" column="email"/>
+		<result property="password" column="password"/>
+		<result property="name" column="name"/>
+		<result property="phone" column="phone"/>		
+		<collection property="authList" resultMap="authMap">
+		</collection>
+	</resultMap>
+	
+	<resultMap id="authMap" type="com.sol.domain.AuthVO" >
+		<result property="email" column="email"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
+	<select id="read" resultMap="memberMap">
+		SELECT mem.email, password, name, enabled,auth, auth.email
+		FROM member mem 
+		LEFT OUTER JOIN member_authorities auth
+		on mem.email = auth.email
+		WHERE mem.email = #{email}
+	</select>
+	
+	<!-- 유저 정보 가져오기 -->
+	<select id="userGet" resultType="com.sol.domain.MemberVO">
+		select name, email, phone from member where email = #{email};
+	</select>
+ </mapper>
