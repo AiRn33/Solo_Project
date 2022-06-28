@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,35 +9,69 @@
 <title></title>
 </head>
 <body>
-	
-	 <!-- Mashead header-->
-        <header class="masthead">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                    <div class="col-lg-6">
-                        <!-- Mashead text and app badges-->
-                        <div class="mb-5 mb-lg-0 text-center text-lg-start">
-                            <h1 class="display-1 lh-1 mb-3">게시판</h1>
-                            
-                            <div class="col-md-4 mb-2" >
-                                    <!-- Feature item-->
-                                    <div class="text-center">
-                                        <i class="bi bi-chat-right-text icon-feature d-block"></i>
-	                                        <button class="btn btn-dark rounded-pill" onclick="location.href='/board/create_board'">
-							                <span class="small">게시판 글 생성</span>
-							                </button>
-                                    </div>
-                            </div>
-                           
-                            <!-- <div class="d-flex flex-column flex-lg-row align-items-center">
-                            	<i class="bi bi-github"></i>
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-            
 
+	<!-- Mashead header-->
+	<header class="masthead">
+
+		<section class="ftco-section">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="table-wrap">
+							<table id="listTable" class="table table-hover">
+								<thead class="thead-dark">
+									<tr>
+										<th>No.</th>
+										<th>Name</th>
+										<th>Title</th>
+										<th>Content</th>
+										<th>Day</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${list }" var="list">
+										<tr class="alert" role="alert" onclick="getBoard(${list.boardNumber})">
+											<th scope="row">${list.boardNumber }</th>
+											<td>${list.name}</td>
+											<td>${list.title }</td>
+											<td>${list.content }</td>
+											<td><fmt:formatDate pattern="yy-MM-dd"
+													value="${list.createDay}" /></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="container">
+			<div class="row">
+				<div class="col"></div>
+				<div class="col">
+					<div class="text-center">
+						<button class="btn btn-dark rounded-pill"
+							onclick="location.href='/board/create_board'">
+							<span class="small">중앙 페이징 넘버 칸</span>
+						</button>
+					</div>
+				</div>
+				<div class="col">
+					<div class="text-center">
+						<button class="btn btn-dark rounded-pill"
+							onclick="location.href='/board/post'">
+							<span class="small">게시판 글 생성</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</header>
+	
+	
 </body>
 </html>

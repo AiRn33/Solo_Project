@@ -34,7 +34,7 @@
       	    
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
-            <div class="container px-5">
+            <div class="container px-3">
                 <a class="navbar-brand fw-bold" href="/">Kim Portfolio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
@@ -46,7 +46,7 @@
                         <li class="nav-item"><a class="nav-link me-lg-3" href="#features">간단이력</a></li> -->
                     </ul> 
                     
-                    <c:if test="${empty sessionEmail }">    	
+                    <c:if test="${empty sessionUserNumber }">    	
 	                    <button class="btn btn-danger rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" onclick="location.href='/member/login'">
 	                        <span class="d-flex align-items-center">
 	                            <i class="bi-chat-text-fill me-2"></i>
@@ -60,7 +60,7 @@
 	                        </span>
 	                    </button>   
                     </c:if>
-                    <c:if test="${not empty sessionEmail }">
+                    <c:if test="${not empty sessionUserNumber }">
                        <button class="btn btn-success rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/member/myPage'">
 	                        <span class="d-flex align-items-center">
 	                            <i class="bi-chat-text-fill me-2"></i>
@@ -152,6 +152,7 @@
         </div>
        
  	<script src="../resources/js/password.js"></script>
+ 	<script src="../resources/js/board.js"></script>
  	
       
         

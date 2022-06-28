@@ -36,8 +36,10 @@
 	 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 		</bean> 
 		
+		
+		
 		<mybatis-spring:scan base-package="com.sol.mapper"/>
 		<context:component-scan base-package="com.sol.service"/>
 		<context:component-scan base-package="com.sol.controller" />
-		
+		<context:component-scan base-package="com.sol.security"/>
 </beans>

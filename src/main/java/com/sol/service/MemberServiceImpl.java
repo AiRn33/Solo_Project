@@ -31,8 +31,24 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO userGet(String email) {
-		return mapper.userGet(email);
+	public MemberVO userGet(String userNumber) {
+		return mapper.userGet(userNumber);
+	}
+
+	@Override
+	public int joinMemberAuth(String email) {
+		return mapper.joinMemberAuth(email);
+	}
+
+	@Override
+	public int memberNumber(String email) {
+		// TODO Auto-generated method stub
+		return mapper.memberNumber(email);
+	}
+
+	@Override
+	public String memberName(int userNumber) {
+		return mapper.memberName(userNumber);
 	}
 
 }

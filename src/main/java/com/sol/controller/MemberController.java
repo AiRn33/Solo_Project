@@ -47,11 +47,11 @@ public class MemberController {
 		vo.setPassword(passwordEncoder.encode(mvo.getPassword()));
 		
 		int result = mapper.joinMember(vo);
-		
-		System.out.println("결과 : " + result);
-		
-		model.addAttribute("result", result);
-		
+		if(result == 1) {
+			mapper.joinMemberAuth(vo.getEmail());
+			log.info(vo.getEmail()+"회원가입 완료");
+		}
+				
 		return "redirect:/main/home";
 	}
 	
@@ -105,11 +105,11 @@ public class MemberController {
 	}
 	
 	@GetMapping("/member/myPage")
-	public String myPageGet(@SessionAttribute("sessionEmail") String email,Model model) {
+	public String myPageGet(@SessionAttribute("sessionUserNumber") String userNumber,Model model) {
 		
 		log.info("myPage Get Start");
 		MemberVO vo = new MemberVO();
-		vo = mapper.userGet(email);
+		vo = mapper.userGet(userNumber);
 		
 		model.addAttribute("vo", vo);
 		log.info("전달할 페이지 내용 : " + vo);

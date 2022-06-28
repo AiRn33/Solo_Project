@@ -7,16 +7,36 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/security
         https://www.springframework.org/schema/security/spring-security.xsd">
 		
-
-    	<security:http>
+		<bean id="loginSuccess" class="com.sol.security.LoginSuccessHandler"/>
+		<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+		<bean id="userDetailService" class="com.sol.security.userDetailsService"/>
+    	<bean id="errorAccessDenied" class="com.sol.security.ErrorAccessDeniedHandler"/>
+    	<bean id="userLoginFail" class="com.sol.security.UserLoginFailHandler"/>
+    	
+    	<security:http auto-config="true" use-expressions="true">
     		 	    		
-			<!-- url 마다 필요한 권한 설정 -->
-			    	
-			<security:form-login/>
-
+			<!-- url 마다 필요한 권한 설정 -->			
+			<security:intercept-url pattern="/board/list" access="permitAll()"/>
+			<security:intercept-url pattern="/board/**" access="hasRole('ROLE_MEMBER')"/>
+			<security:intercept-url pattern="/**" access="permitAll()"/>
+			
+			
+			<!-- 로그인 페이지 설정 -->
+			<security:form-login login-page="/member/login"
+									authentication-success-handler-ref="loginSuccess"
+									 authentication-failure-handler-ref="userLoginFail"/>
+			<!-- 오류 페이지 설정 -->
+			<security:access-denied-handler ref="errorAccessDenied"/> 
+			<security:logout logout-url="/member/logout" invalidate-session="true"/>
 		</security:http>
-		
+			
 		<security:authentication-manager>
+		
+			<security:authentication-provider user-service-ref="userDetailService">
+				
+				<security:password-encoder ref="bcryptPasswordEncoder"/>
+				
+			</security:authentication-provider>
 			
 		</security:authentication-manager>
 		

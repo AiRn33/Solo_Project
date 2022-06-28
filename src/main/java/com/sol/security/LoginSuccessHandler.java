@@ -9,13 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import com.sol.mapper.MemberMapper;
 
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-public class LoginSuccessHandler implements AuthenticationSuccessHandler{@Override
+public class LoginSuccessHandler implements AuthenticationSuccessHandler{
+	
+	@Autowired
+	private MemberMapper mapper;
 	
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			 Authentication auth) throws IOException, ServletException {
@@ -39,7 +45,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{@Overri
 		
 		if(roleNames.contains("ROLE_MEMBER")) {
 			log.warn("member 입니다");
-			session.setAttribute("sessionEmail", auth.getName());
+			int userNumber = mapper.memberNumber(auth.getName());
+			session.setAttribute("sessionUserNumber", userNumber);
 			response.sendRedirect("/");
 			return;
 		}else {

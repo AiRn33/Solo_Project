@@ -10,6 +10,11 @@
  			 						#{name}, #{email}, #{password},'1', #{phone})
  	</insert>
  	
+ 	<!-- 회원 권한 추가 -->
+ 	<insert id="joinMemberAuth">
+		insert into member_authorities values(#{email}, 'ROLE_MEMBER');
+ 	</insert>
+ 	
  	<!-- 아이디 중복체크 -->
  	<select id="idCheck" resultType="int">
  		select count(*) from member where email=#{email}
@@ -43,6 +48,16 @@
 	
 	<!-- 유저 정보 가져오기 -->
 	<select id="userGet" resultType="com.sol.domain.MemberVO">
-		select name, email, phone from member where email = #{email};
+		select name, email, phone from member where userNumber = #{userNumber};
+	</select>
+	
+	<!-- 유저 번호 가져오기 -->
+	<select id="memberNumber" resultType="int">
+		select userNumber from member where email=#{email};
+	</select>
+	
+	<!-- 유저 이름 가져오기 -->
+	<select id="memberName" resultType="String">
+		select name from member where userNumber=#{userNumber}
 	</select>
  </mapper>

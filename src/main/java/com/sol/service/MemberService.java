@@ -11,6 +11,9 @@ public interface MemberService {
 	int idCheck(MemberVO vo);
 	MemberVO read(String email);
 	MemberVO userGet(String email);
+	int joinMemberAuth(String email);
+	int memberNumber(String email);
+	String memberName(int userNumber);
 
 
 }
