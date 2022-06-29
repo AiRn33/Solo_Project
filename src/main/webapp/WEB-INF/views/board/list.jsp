@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -30,9 +30,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${list }" var="list">
+								<c:set var="listLength" value="${fn:length(list) }"/>
+									<c:forEach items="${list }" var="list" varStatus="vs">
 										<tr class="alert" role="alert" onclick="getBoard(${list.boardNumber})">
-											<th scope="row">${list.boardNumber }</th>
+											<th scope="row">${listLength - vs.index}</th>
 											<td>${list.name}</td>
 											<td>${list.title }</td>
 											<td>${list.content }</td>

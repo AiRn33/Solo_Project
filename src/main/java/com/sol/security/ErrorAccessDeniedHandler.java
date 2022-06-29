@@ -18,7 +18,7 @@ public class ErrorAccessDeniedHandler implements AccessDeniedHandler{
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 
-		log.error("에러 발생 입니다");
+		log.error(accessDeniedException.getMessage());
 		
 		response.sendRedirect("/board/accessError");
 	}

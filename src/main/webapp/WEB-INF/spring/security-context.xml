@@ -14,12 +14,11 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     	<bean id="userLoginFail" class="com.sol.security.UserLoginFailHandler"/>
     	
     	<security:http auto-config="true" use-expressions="true">
-    		 	    		
+    		<security:csrf disabled="false"/>		
 			<!-- url 마다 필요한 권한 설정 -->			
 			<security:intercept-url pattern="/board/list" access="permitAll()"/>
 			<security:intercept-url pattern="/board/**" access="hasRole('ROLE_MEMBER')"/>
 			<security:intercept-url pattern="/**" access="permitAll()"/>
-			
 			
 			<!-- 로그인 페이지 설정 -->
 			<security:form-login login-page="/member/login"
