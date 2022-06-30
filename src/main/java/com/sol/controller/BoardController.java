@@ -1,6 +1,6 @@
 package com.sol.controller;
 
-import java.net.http.HttpResponse;
+
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sol.domain.BoardVO;
@@ -28,14 +27,28 @@ public class BoardController {
 	private final BoardServiceImpl mapper;
 	private final MemberServiceImpl memberMapper;
 
+	
 	// 게시판 페이지 이동 GET
 	@GetMapping("/board/list")
-	public String listGet(Model model) {
+	public String listGet(Model model, @RequestParam(required = false) String page) {
 		log.info("getList Start");
+		
+		if(page == null) {
+			List<BoardVO> list = mapper.list();
+			model.addAttribute("list", list);
+			model.addAttribute("listLength", list);
+			model.addAttribute("page",0);
+			
 
-		List<BoardVO> list = mapper.list();
-		model.addAttribute("list", list);
-
+		}else {
+			List<BoardVO> listLength = mapper.list();
+			List<BoardVO> list = mapper.listPage(((Integer.parseInt(page.replace("'", ""))-1)*7));
+			model.addAttribute("list", list);
+			model.addAttribute("listLength", listLength);
+			System.out.println((Integer.parseInt(page.replace("'", ""))-1)*7);
+			model.addAttribute("page", ((Integer.parseInt(page.replace("'", ""))-1)*7));
+		}
+		
 		return "/board/list";
 	}
 

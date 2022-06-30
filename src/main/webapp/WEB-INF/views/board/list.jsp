@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -30,10 +30,12 @@
 									</tr>
 								</thead>
 								<tbody>
-								<c:set var="listLength" value="${fn:length(list) }"/>
-									<c:forEach items="${list }" var="list" varStatus="vs">
-										<tr class="alert" role="alert" onclick="getBoard(${list.boardNumber})">
-											<th scope="row">${listLength - vs.index}</th>
+									<c:set var="listLength" value="${fn:length(listLength)}" />
+									
+									<c:forEach items="${list }" var="list" varStatus="vs" end="6">
+										<tr class="alert" role="alert"
+											onclick="getBoard(${list.boardNumber})">
+											<th scope="row">${(listLength - page) - vs.index}</th>
 											<td>${list.name}</td>
 											<td>${list.title }</td>
 											<td>${list.content }</td>
@@ -50,16 +52,35 @@
 		</section>
 		<div class="container">
 			<div class="row">
-				<div class="col"></div>
-				<div class="col">
+				<div class="col-5"></div>
+				<div class="col-5">
 					<div class="text-center">
-						<button class="btn btn-dark rounded-pill"
-							onclick="location.href='/board/create_board'">
-							<span class="small">중앙 페이징 넘버 칸</span>
-						</button>
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+							
+							<fmt:parseNumber var="pages" integerOnly="true" value="${page /35}"/>
+							
+								<li class="page-item black"><a class="page-link" 
+								href="/board/list?page='${(pages*5)+1}'">Previous</a></li>
+								<c:if test="${(listLength % 7 ) eq 0}">
+									<c:forEach begin="1" end="${(listLength / 7)}" varStatus="vs">
+										<li class="page-item">
+										<a class="page-link" href="/board/list?page='${vs.index }'">${vs.index }</a></li>
+									</c:forEach>
+								</c:if>
+								<c:if test="${(listLength % 7 ) ne 0}">
+									<c:forEach begin="1" end="5" varStatus="vs">
+										<li class="page-item">
+										<a class="page-link" href="/board/list?page='${vs.index }'">${vs.index }</a></li>
+									</c:forEach>
+								</c:if>
+								<li class="page-item"><a class="page-link" 
+								href="#">Next</a></li>
+							</ul>
+						</nav>
 					</div>
 				</div>
-				<div class="col">
+				<div class="col-2">
 					<div class="text-center">
 						<button class="btn btn-dark rounded-pill"
 							onclick="location.href='/board/post'">
@@ -72,7 +93,7 @@
 
 
 	</header>
-	
-	
+
+
 </body>
 </html>

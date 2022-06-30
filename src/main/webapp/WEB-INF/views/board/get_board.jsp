@@ -31,24 +31,28 @@
 					</div>
 					<br>
 
-					<form action="/board/post/${vo.boardNumber }" method="post">
 						<div class="container">
 							<div class="row">
-								<div class="col-3"></div>
-								<div class="col-7">
-									<button class="btn btn-primary">글 목록</button>
+								<div class="col-3 form-group"></div>
+								<div class="col-7 form-group">
+									<button class="btn btn-primary" onClick="location.href='/board/list'">글 목록</button>
 									<button class="btn btn-success"
 										onclick="updateBoard(${vo.boardNumber})">수정하기</button>
-									<input type="submit" class="btn btn-danger" value="삭제하기">
-								</div>
-								<div class="col-2"></div>
-								<input type="hidden" name="_method" value="delete" /> <input
+								
+								<form action="/board/post/${vo.boardNumber }" method="post">
+									<button type="submit" class="btn btn-danger">삭제하기</button>
+									<input type="hidden" name="_method" value="delete" /> <input
 									type="hidden" name="${_csrf.parameterName }"
 									value="${_csrf.token }" />
+								</form>	
+								
+								</div>
+								<div class="col-2 form-group" ></div>
 							</div>
+							
 						</div>
+						
 
-					</form>
 				</div>
 			</div>
 		</div>
